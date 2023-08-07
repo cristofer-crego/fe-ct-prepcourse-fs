@@ -7,14 +7,13 @@ function crearGato(nombre, edad) {
    // La propiedad "meow" será una función que retorne el string: "Meow!".
    // Retornar el objeto.
    // Tu código:
-   var persona = { nombre : "nombre" , edad : "edad" }
-persona["Meow"] = [];
-var agregar = function (valor) {
-   persona[Meow] = valor;
+   var persona = { nombre : nombre , edad : edad }
+   persona["meow"] =  function () {
+      return ("Meow!");
+   }
+   
+   persona["meow"] ();
    return persona
-}
-agregar ("Meow");
-return persona
 }
 
 function nuevoUsuario(nombre, email, password) {
@@ -42,8 +41,7 @@ function invocarMetodo(objeto, metodo) {
    // Esta propiedad contiene una función en su interior. Debes invocarla/ejecutarla.
    // [NOTA]: no necesitar retornar nada.
    // Tu código:
-   objeto = {metodo : function () {}}
-   objeto.metodo()
+      objeto[metodo]()
 
 }
 
@@ -69,7 +67,11 @@ function tieneEmail(objetoUsuario) {
    // Verifica si el "objetoUsuario", en su propiedad "email", posee un valor definido.
    // En ese caso retornar true. Caso contrario, false.
    // Tu código:
-      return objetoUsuario.hasOwnProperty("email");
+      if (objetoUsuario["email"] == null && objetoUsuario["email"] == undefined ){
+         return false;
+      } else {
+         return true;
+      }
    
 }
 
@@ -86,7 +88,10 @@ function verificarPassword(objetoUsuario, password) {
    // Verifica si la propiedad "password" del "objetoUsuario" coincide con el parámetro "password".
    // En ese caso retornar true. Caso contrario, false.
    // Tu código:
-   return objetoUsuario["password"].hasOwnProperty(password);
+    if (objetoUsuario["password"] ==(password)) {
+      return true
+    } else  {return false}
+  
 }
 
 function actualizarPassword(objetoUsuario, nuevaPassword) {
@@ -116,7 +121,7 @@ function pasarUsuarioAPremium(objetoMuchosUsuarios) {
    // Tu código:
  
  for ( var prop in objetoMuchosUsuarios){
-   objetoMuchosUsuarios["usuarios"]["esPremium"] = "true"
+   objetoMuchosUsuarios[prop]["esPremium"] = true
  } 
  return objetoMuchosUsuarios;
 }
@@ -127,6 +132,12 @@ function sumarLikesDeUsuario(objetoUsuario) {
    // Cada post posee una propiedad llamada "likes". Esta propiedad es un número.
    // Debes sumar los likes de todos los post y retornar el resultado.
    // Tu código:
+   var sumaNum= 0, like= 0;
+   for (i in objetoUsuario.posts){
+      like = objetoUsuario.posts[i].likes;
+      sumaNum = like + sumaNum ;
+   }
+   return sumaNum;
 }
 
 function agregarMetodoCalculoDescuento(objetoProducto) {
@@ -140,6 +151,10 @@ function agregarMetodoCalculoDescuento(objetoProducto) {
    // PorcentajeDeDescuento ---> 0.2
    // Precio final ---> 8
    // Tu código:
+      objetoProducto["calcularPrecioDescuento"] = function () {
+      return objetoProducto.precio - (objetoProducto.precio * objetoProducto.porcentajeDeDescuento)
+   }
+      return objetoProducto
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
